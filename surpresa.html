@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Comando Surpresa</title>
+  <title>Surpresa de Aniversário 🎉</title>
   <link rel="icon" href="flaticon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
   <style>
@@ -40,6 +40,7 @@
       cursor: pointer;
     }
 
+    /* Estilo da carta */
     .message {
       font-size: 2em;
       color: #6a4f4d;
@@ -52,6 +53,7 @@
       max-width: 900px;
     }
 
+    /* Botão escondido */
     .surprise-btn {
       position: fixed;
       bottom: 20px;
@@ -67,6 +69,7 @@
       transform: scale(1.2);
     }
 
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -97,6 +100,7 @@
       margin-top: 20px;
     }
 
+    /* Animação */
     .modal.fade-in {
       animation: fadeIn 0.5s ease-in-out;
     }
@@ -105,15 +109,18 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
   </style>
 </head>
 <body>
 
-  <!-- Menu -->
+  <!-- MENU -->
   <nav>
-    <a href="#">Início</a>
-    <a href="#">Sobre</a>
-    <a href="#">Contato</a>
+    <a href="index.html">Início</a>
+    <a href="historia.html">Nossa História</a>
+    <a href="motivos.html">Motivos que te amo</a>
+    <a href="promessas.html">Promessas</a>
+    <a href="galeria.html">Galeria</a>
   </nav>
 
   <!-- Carta de Feliz Aniversário -->
@@ -132,61 +139,25 @@
 
   <!-- Modal com vídeo do YouTube -->
   <div class="modal" id="surpriseModal">
-    <div id="player"></div>
+    <iframe src="https://www.youtube.com/embed/ElCA7oAGHcg?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <button class="close-btn" onclick="closeModal()">Fechar</button>
   </div>
 
   <!-- Música -->
   <audio id="music" src="musica.mp3" preload="auto"></audio>
 
-  <!-- YouTube API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-
   <script>
-    let player;
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '400',
-        width: '100%',
-        videoId: 'ElCA7oAGHcg',
-        playerVars: {
-          autoplay: 1,
-          controls: 1,
-          modestbranding: 1,
-        },
-        events: {
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }
-
-    function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.PLAYING) {
-        document.getElementById('music').pause();
-      }
-    }
-
     function openModal() {
       document.getElementById('music').play();
       const modal = document.getElementById('surpriseModal');
       modal.classList.add('fade-in');
       modal.style.display = 'block';
-
-      // Se o player já foi criado, dá play no vídeo
-      if (player && typeof player.playVideo === 'function') {
-        player.playVideo();
-      }
     }
 
     function closeModal() {
       const modal = document.getElementById('surpriseModal');
       modal.style.display = 'none';
       document.getElementById('music').pause();
-
-      if (player && typeof player.stopVideo === 'function') {
-        player.stopVideo();
-      }
     }
   </script>
 
